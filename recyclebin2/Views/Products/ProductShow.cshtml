@@ -1,0 +1,78 @@
+﻿
+
+@using PagedList.Mvc
+@model IEnumerable<recyclebin2.Models.Product>
+@{
+    ViewBag.Title = "ProductShow";
+}
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("itemid");
+        var formData = new FormData();
+        formData.append("ProductID,itemId");
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Products/Index',
+            success: function (data) {
+                if (data.Success) {
+                    $("#cartItem").text("Cart(" + data.Counter + ")");
+                }
+            },
+            error: function () {
+                alert("there is some problem");
+            }
+        });
+    }
+</script>
+
+
+<h2>View</h2>
+
+<div>
+    <h4>PrductPage</h4>
+    @using (@Html.BeginForm("ProductShow", "Products"))
+    {
+        <div class="navbar-form ">
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+        </div>
+    }
+    <div class="row" style="margin-bottom:40px">
+
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="col-lg-4 col-md-4" style="height:200px;margin-top:100px">
+                    <img src="@Url.Content(item.ProductImage)" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px" />
+                    <h4 style="color:blue; font-family:'Arial Rounded MT';text-align:center">@item.ProductName</h4>
+                    <h4 style="color:blue; font-family:'Arial Rounded MT';text-align:center">@item.ProductPrice</h4>
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductID }, new { @class = "btn btn-danger btn-sm" })
+
+
+                        @*<a class="btn btn-danger btn-sm" href="#">AddToCart</a>*@
+                        <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-warning">@Html.ActionLink("Add To Cart", "Adtocart", new { id = @item.ProductID })</span></h4>
+
+
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+
+
+</div>
+
+
+

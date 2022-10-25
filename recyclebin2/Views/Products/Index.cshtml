@@ -1,0 +1,225 @@
+﻿@model IEnumerable<recyclebin2.Models.Product>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+    <!-- bootstrap css -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!--style-->
+    <link rel="stylesheet" href="~/css/nav.css" />
+    <link rel="stylesheet" href="~/css/footer.css" />
+    <link rel="stylesheet" href="~/css/about.css" />
+    <!--google font rancher-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+    <!--font awsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+
+</head>
+
+<body>
+    @Html.AntiForgeryToken()
+
+    <header>
+        <nav class="navbar navbar-expand-md ">
+            <a class="navbar-brand" href="index.php">
+                <img src="~/assets/logo.png" width="09%" height="50%">
+                <span class="binfont font-weight-bolder">RecycleB🚮n</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span><i class="fas fa-bars navbar-icon"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item active"><a class="nav-link" @Html.ActionLink("Home", "Index", "Home")</a></li>
+                    <li class="nav-item active"><a class="nav-link" @Html.ActionLink("About", "About", "Home")</a></li>
+                    <li class="nav-item active"><a class="nav-link" @Html.ActionLink("Profile", "Login", "User1")</a></li>
+                    <li class="nav-item active"><a class="nav-link" @Html.ActionLink("Products", "Index", "Products")</a></li>
+                    <li class="nav-item active"><a class="nav-link" @Html.ActionLink("Favourites", "Checkout", "Products")</a></li>
+                    <li class="nav-item active"><a class="nav-link" @Html.ActionLink("Contacts", "Create", "Contacts")</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <header>
+
+            <br /><br />
+
+                  <body>
+
+                      @*<div class="row">
+            <div class="col-md-6"
+           @using (@Html.BeginForm("Index", "Products"))
+            {
+                <div class="navbar-form ">
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            }
+
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-success" role="alert" style="font-size:large">
+                        @TempData["msg"]
+                    </div>
+
+                }
+                @if (TempData["total"] == null)
+                {
+
+                    <h3>
+                        Total Bill: 0 Rs
+                    </h3>
+                }
+                else
+                {
+                    <h3> Total Bill: @TempData["total"] Rs</h3>
+
+                }
+
+            </div>
+
+
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <h3 style="font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-warning">@Html.ActionLink("Check Out", "checkout", "Product")</span></h3>
+            </div>
+
+
+            </div>
+
+        </div>*@
+                      @*<h4>PrductPage</h4>*@
+                      @*<div class="container-fluid">*@
+                      <div class="row">
+                          @using (@Html.BeginForm("Index", "Products"))
+                          {
+                              <div class="form-horizontal">
+
+                                  <div class="form-group">
+                                      @*<label class="col-md-2 control-label">Search</label>*@
+
+                                      <div class="col-md-4">
+                                          <input type="text" placeholder="Search here" name="search" id="search"
+
+                                      </div>
+                                      <br /><br />
+                                      <div class="col-md-4">
+                                          <button class="btn btn-primary" type="submit">Search</button>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          }
+                      </div>
+
+                      @*<div class="container">*@
+                      <div class="row" style="margin-bottom:180px;padding:20px">
+
+                          @foreach (var item in Model)
+                          {
+                              <div class="col-lg-4 col-md-4" style="height:200px;margin-top:130px">
+                                  <img src="@Url.Content(item.ProductImage)" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px">
+                                  <h4 style="color:blue; font-family:'Arial Rounded MT';text-align:center">@item.ProductName</h4>
+                                  <h4 style="color:blue; font-family:'Arial Rounded MT';text-align:center">@item.ProductPrice</h4>
+                                  <div>
+                                      <span style=" margin-left: 55px; font-family: 'Arial Rounded MT'; text-align: center;"><span class="btn btn-danger">@Html.ActionLink("Details", "Details", new { id = item.ProductID }@*new { @class = "btn btn-dange btn-sm" }*@)</span></span>
+                                      <span style="color:#808080;margin-left:40px; font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-warning">@Html.ActionLink("Add To Cart", "Adtocart", new { id = @item.ProductID })</span></span>
+
+                                  </div>
+
+                              </div>
+
+                          }
+
+                      </div>
+                      </div>*
+                      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                      <footer class="footer">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="footer-col">
+                                      <h4>Recycle Bin</h4>
+                                      <ul>
+                                          <li><a href="#">About Us</a></li>
+                                          <li><a href="#">Our Services</a></li>
+                                          <li><a href="#">Privacy Policy</a></li>
+                                      </ul>
+                                  </div>
+                                  <div class="footer-col">
+                                      <h4>Get Help</h4>
+                                      <ul>
+                                          <li><a href="#">Returns</a></li>
+                                          <li><a href="#">Order Status</a></li>
+                                          <li><a href="#">Payment Options</a></li>
+                                      </ul>
+                                  </div>
+                                  <div class="footer-col">
+                                      <h4>Contact Us</h4>
+                                      <ul>
+                                          <li><a href="#"><i class="fa fa-phone"></i>01914389618</a></li>
+                                          <li><a href="#"><i class="fa fa-envelope"></i>recyclebin@gmail.com</a></li>
+                                          <li><a href="#"><i class="fa fa-home"></i>Dhaka,Bangladesh</a></li>>
+                                      </ul>
+                                  </div>
+                                  <div class="footer-col">
+                                      <h4>follow us</h4>
+                                      <div class="social-links">
+                                          <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                          <a href="#"><i class="fab fa-twitter"></i></a>
+                                          <a href="#"><i class="fab fa-instagram"></i></a>
+                                          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="container2">
+                              <p class="text-white" ;text-align="center"> ©2021 Copyright.All Rights Reserved</p>
+                          </div>
+                      </footer>
+
+                      <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                      <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                      <script src="~/js/site.js" asp-append-version="true"></script>
+
+                  </body>
+</html>
+
+
+
+

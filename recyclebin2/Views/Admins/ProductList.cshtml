@@ -1,0 +1,270 @@
+﻿@model IEnumerable < recyclebin2.Models.Product>
+
+
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<h2>ProductList</h2>
+
+
+
+
+@*<h2>Index</h2>*@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>ProductList</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <link rel="stylesheet" href="~/css/dashboard.css">
+
+
+</head>
+
+<body>
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="dashboard.php"> RecycleB🚮n</a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="sidebar-header">
+                    <div class="user-info">
+                        <span class="user-name">
+                            Hey,
+                            <strong><?php echo $_SESSION['admin']['name']?></strong>
+                        </span>
+                        <!-- <span class="user-role">Administrator</span> -->
+
+                    </div>
+                </div>
+                <!-- sidebar-header  -->
+
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>Dashboard</span>
+                        </li>
+
+
+
+                        <li>
+
+                            @Html.ActionLink("Categoris", "CategoryList", "Admins")
+
+                        </li>
+                        <li>
+                            @Html.ActionLink("Produts", "ProductList", "Admins")
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+
+                                <span>Users</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Admin User", "AdminList", "Admins")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Website User", "UserList", "Admins")
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li>
+
+                            @Html.ActionLink("Contact", "ContactList", "Admins")
+
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("About", "About", "Home")
+
+                        </li>
+
+                        @*<li>
+                    <a href="admin.php">
+                        <i class="fas fa-user "></i>
+                        <span>Our Team</span>
+                    </a>
+                </li>*@
+
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+
+
+
+                        <li>
+                            <a href="logOut.php">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>..........................................................................................................................................................................................
+                <!-- sidebar-menu  -->
+            </div>
+        </nav>
+
+        <div><h1 class="text-center">RecycleB🚮n</h1></div>
+        <hr style="background-color: rgb(242,242,242);">
+        <main class="page-content">
+            <div class="container-fluid">
+                <div class="card shadow mb-4">
+                    <div class="card header py-3">
+
+                    </div>
+
+                    <div class="card-body">
+
+
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                    <th>
+                                      ProductName
+                                    </th>
+                                    <th>
+                                       ProductPrice
+                                    </th>
+                                    <th>
+                                      ProductDiscription
+                                    </th>
+                                    <th>
+                                        CatagoryID
+                                    </th>
+                                    <th>
+                                        .ProductImage
+                                    </th>
+                                    <th>
+                                        ProductBrand
+                                    </th>
+                                    <th>
+                                        ProductCondition
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+
+
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductPrice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductDiscription)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CatagoryID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductImage)
+                                        </td>
+                                        <td>
+
+
+                                            @Html.DisplayFor(modelItem => item.ProductBrand)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductCondition)
+                                        </td>
+                                        <td>
+                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.AdminID }) |*@
+                                            @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                                            @Html.ActionLink("Delete", "ProductDelete", new { id = item.ProductID })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
+</body>
+
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="~/js/sweetAlert.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+
+
+                var strvalue = "@((string)ViewBag.mssg)";
+                if (strvalue != null)
+                {
+                    Swal.fire(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                }
+
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
